@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍</title>
+<link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap" rel="stylesheet">
+<style id="css">
+*{box-sizing:border-box}
+body{margin:0;font-family:'Battambang',sans-serif;background:#f3ebe3}
+/* ===== ទំព័រអញ្ជើញ ===== */
+.v{--c:#b8860b;max-width:520px;margin:0 auto;background:#fffaf5;color:#3a2e2a;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,.12)}
+.v section{padding:48px 24px;text-align:center}
+.v h2{font-family:'Moul',serif;color:var(--c);font-weight:400;font-size:20px;margin:0 0 18px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)),var(--c) center/cover;padding:40px 24px}
+.hero small{letter-spacing:2px;opacity:.9}
+.hero .names{font-family:'Moul',serif;font-size:34px;line-height:1.6;margin:18px 0}
+.hero .amp{font-size:26px;color:#fff;opacity:.85}
+.hero .dt{font-size:16px;margin-top:8px}
+.msg{white-space:pre-line;line-height:2}
+.cd{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.cd div{background:var(--c);color:#fff;border-radius:12px;padding:12px 4px;width:72px}
+.cd b{display:block;font-size:24px}.cd span{font-size:12px}
+.tl{list-style:none;margin:0;padding:0;text-align:left;border-left:2px solid var(--c);margin-left:16px}
+.tl li{position:relative;padding:0 0 22px 22px}
+.tl li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--c)}
+.tl b{color:var(--c)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
+.v iframe{width:100%;height:280px;border:0;border-radius:12px}
+.btn{display:inline-block;background:var(--c);color:#fff;text-decoration:none;border:0;border-radius:30px;padding:14px 28px;font:inherit;font-size:16px;cursor:pointer}
+.foot{background:#2b2220;color:#eee;white-space:pre-line;line-height:2}
+.music{position:fixed;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;border:0;background:var(--c);color:#fff;font-size:20px;cursor:pointer;z-index:9}
+/* ===== កម្មវិធីកែប្រែ ===== */
+.ed{display:grid;grid-template-columns:420px 1fr;height:100vh}
+.ed .pn{overflow:auto;padding:18px;background:#fff;border-right:1px solid #ddd}
+.ed h1{font-size:20px;margin:0 0 4px}.ed .hint{font-size:13px;color:#666;margin:0 0 14px;line-height:1.7}
+.ed label{display:block;font-size:13px;margin:12px 0 4px;color:#444}
+.ed input,.ed textarea{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;font:inherit;font-size:14px}
+.ed input[type=color]{height:40px;padding:2px}
+.ed textarea{min-height:90px}
+.ed .row{display:flex;gap:6px;margin-bottom:6px}.ed .row input:first-child{width:110px;flex:none}
+.ed button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:9px 12px;background:#eee}
+.ed button.p{background:#b8860b;color:#fff}
+.ed .acts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.ed .th{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.ed .th div{position:relative}.ed .th img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.ed .th button{position:absolute;top:-6px;right:-6px;padding:0;width:20px;height:20px;border-radius:50%;background:#c33;color:#fff;line-height:20px}
+.ed .pv{background:#ddd;display:flex;justify-content:center;align-items:stretch}
+.ed iframe{width:100%;max-width:520px;height:100%;border:0;background:#fff}
+.ed h3{margin:22px 0 4px;font-size:15px}
+@media(max-width:800px){.ed{display:block;height:auto}.ed .pv{height:80vh}.ed .pn{border:0}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="data-slot"></script>
+<script>
+(function(){
+// រក្សាទុកគំរូទំព័រ សម្រាប់បង្កើតឯកសារជូនអតិថិជន
+const SRC='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+const SLOT='<script id="data-slot">'+'</'+'script>';
+
+const KM=['មករា','កុម្ភៈ','មីនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'];
+const WD=['អាទិត្យ','ច័ន្ទ','អង្គារ','ពុធ','ព្រហស្បតិ៍','សុក្រ','សៅរ៍'];
+const kh=s=>String(s).replace(/\d/g,c=>'០១២៣៤៥៦៧៨៩'[c]);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe=u=>{u=(u||'').trim();return(/^(https?:|tel:|mailto:|data:image\/)/i.test(u)||(u&&!/^[a-z]+:/i.test(u)))?u:''};
+
+const DEF={
+ groom:'វាសនា',bride:'សុជីវ៉ា',date:'2026-12-20',time:'08:00',
+ venue:'សាលជប់លៀង',address:'ភ្នំពេញ ប្រទេសកម្ពុជា',mapQuery:'Phnom Penh',
+ message:'សូមគោរពអញ្ជើញ ឯកឧត្តម លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា\nចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស\nក្នុងពិធីអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ',
+ program:[{t:'07:00',title:'ពិធីហែរជំនូន'},{t:'08:00',title:'ពិធីសូត្រមន្ត និងបង្សុកូល'},{t:'11:00',title:'ពិធីកាត់សក់ បង់សំពត់'},{t:'18:00',title:'ពិធីជប់លៀង'}],
+ gallery:[],heroImage:'',music:'',
+ rsvpUrl:'',rsvpLabel:'បញ្ជាក់ការចូលរួម',color:'#b8860b',
+ footer:'សូមអរគុណចំពោះការអញ្ជើញចូលរួម\nវាសនា & សុជីវ៉ា'
+};
+
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const dec=s=>{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return JSON.parse(decodeURIComponent(escape(atob(s))))};
+const fromUrl=()=>{const m=location.hash.match(/^#d=(.+)$/);if(m){try{return dec(m[1])}catch(e){}}return null};
+const saved=()=>{try{return JSON.parse(localStorage.getItem('wd')||'null')}catch(e){return null}};
+
+function build(d){
+ return SRC.replace(SLOT,()=>'<script id="data-slot">window.__DATA__='+JSON.stringify(d).replace(/</g,'\\u003c')+'</'+'script>');
+}
+
+function render(d){
+ const dt=new Date(d.date+'T'+(d.time||'00:00'));
+ const ok=!isNaN(dt);
+ const dateTxt=ok?`ថ្ងៃ${WD[dt.getDay()]} ទី${kh(dt.getDate())} ខែ${KM[dt.getMonth()]} ឆ្នាំ${kh(dt.getFullYear())} វេលាម៉ោង ${kh(d.time||'')}`:'';
+ const hero=safe(d.heroImage);
+ let h=`<div class="v" style="--c:${esc(d.color||'#b8860b')}">`;
+ h+=`<section class="hero" style="${hero?`background-image:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)),url('${esc(hero)}')`:''}">
+  <small>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍</small>
+  <div class="names">${esc(d.groom)}<div class="amp">&amp;</div>${esc(d.bride)}</div>
+  <div class="dt">${esc(dateTxt)}</div></section>`;
+ h+=`<section><h2>សូមគោរពអញ្ជើញ</h2><div class="msg">${esc(d.message)}</div>
+  <div style="margin-top:22px;line-height:1.9"><b>${esc(d.venue)}</b><br>${esc(d.address)}</div>
+  ${ok?`<div class="cd"><div><b id="cd-d">0</b><span>ថ្ងៃ</span></div><div><b id="cd-h">0</b><span>ម៉ោង</span></div><div><b id="cd-m">0</b><span>នាទី</span></div><div><b id="cd-s">0</b><span>វិនាទី</span></div></div>`:''}</section>`;
+ const pr=(d.program||[]).filter(p=>p.title||p.t);
+ if(pr.length)h+=`<section style="background:#fff3e6"><h2>កម្មវិធី</h2><ul class="tl">${pr.map(p=>`<li><b>${esc(kh(p.t||''))}</b><br>${esc(p.title||'')}</li>`).join('')}</ul></section>`;
+ const g=(d.gallery||[]).map(safe).filter(Boolean);
+ if(g.length)h+=`<section><h2>វិចិត្រសាលរូបភាព</h2><div class="gal">${g.map(u=>`<img src="${esc(u)}" alt="">`).join('')}</div></section>`;
+ if(d.mapQuery)h+=`<section style="background:#fff3e6"><h2>ទីតាំង</h2><iframe loading="lazy" src="https://maps.google.com/maps?q=${encodeURIComponent(d.mapQuery)}&output=embed"></iframe><p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.mapQuery)}">បើកក្នុង Google Maps</a></p></section>`;
+ if(safe(d.rsvpUrl))h+=`<section><h2>ការចូលរួម</h2><a class="btn" target="_blank" rel="noopener" href="${esc(safe(d.rsvpUrl))}">${esc(d.rsvpLabel||'បញ្ជាក់ការចូលរួម')}</a></section>`;
+ h+=`<section class="foot">${esc(d.footer)}</section>`;
+ if(safe(d.music))h+=`<audio id="bgm" loop src="${esc(safe(d.music))}"></audio><button class="music" id="mbtn" title="ភ្លេង">♪</button>`;
+ return h+'</div>';
+}
+
+function startViewer(d){
+ document.title='អាពាហ៍ពិពាហ៍ '+d.groom+' & '+d.bride;
+ document.getElementById('app').innerHTML=render(d);
+ const t=new Date(d.date+'T'+(d.time||'00:00')).getTime();
+ const set=(i,v)=>{const e=document.getElementById(i);if(e)e.textContent=kh(v)};
+ const tick=()=>{let s=Math.max(0,Math.floor((t-Date.now())/1000));set('cd-d',Math.floor(s/86400));set('cd-h',Math.floor(s%86400/3600));set('cd-m',Math.floor(s%3600/60));set('cd-s',s%60)};
+ if(!isNaN(t)){tick();setInterval(tick,1000)}
+ const b=document.getElementById('mbtn'),a=document.getElementById('bgm');
+ if(b&&a)b.onclick=()=>{if(a.paused){a.play();b.textContent='❚❚'}else{a.pause();b.textContent='♪'}};
+}
+
+function compress(file,max,q){
+ return new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+  const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');
+  c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+  res(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(file)});
+}
+
+function startEditor(){
+ let d=Object.assign({},DEF,fromUrl()||saved()||window.__DATA__||{});
+ d.program=d.program||[];d.gallery=d.gallery||[];
+ const F=[['groom','ឈ្មោះកូនកំលោះ'],['bride','ឈ្មោះកូនក្រមុំ'],['date','កាលបរិច្ឆេទ','date'],['time','ម៉ោង','time'],
+  ['venue','ឈ្មោះទីកន្លែង'],['address','អាសយដ្ឋាន'],['mapQuery','ឈ្មោះកន្លែងសម្រាប់ផែនទី Google Maps'],
+  ['message','ពាក្យអញ្ជើញ','textarea'],['heroImage','រូបភាពក្បាលទំព័រ (ដាក់ URL ឬ Upload)','img'],
+  ['music','តំណភ្លេង (ឯកសារ .mp3 URL)'],['rsvpUrl','តំណបញ្ជាក់ការចូលរួម (Telegram / Google Form)'],
+  ['rsvpLabel','អក្សរលើប៊ូតុង'],['color','ពណ៌ចម្បង','color'],['footer','ពាក្យបញ្ចប់','textarea']];
+ let h=`<div class="ed"><div class="pn"><h1>កម្មវិធីបង្កើតលិខិតអញ្ជើញ</h1>
+ <p class="hint">កែព័ត៌មានខាងក្រោម ហើយមើលលទ្ធផលនៅខាងស្តាំភ្លាមៗ។ ពេលរួច ចុច «ចម្លងតំណ» ឬ «ទាញយកឯកសារ» ផ្ញើឱ្យអតិថិជន។ ការកែប្រែត្រូវបានរក្សាទុកក្នុងកុំព្យូទ័រនេះដោយស្វ័យប្រវត្តិ។</p>
+ <div class="acts"><button class="p" id="b-link">ចម្លងតំណ</button><button class="p" id="b-dl">ទាញយកឯកសារ HTML</button><button id="b-open">មើលពេញអេក្រង់</button><button id="b-new">ចាប់ផ្តើមថ្មី</button></div>`;
+ F.forEach(([k,l,t])=>{
+  h+=`<label>${l}</label>`;
+  if(t==='textarea')h+=`<textarea data-k="${k}"></textarea>`;
+  else if(t==='img')h+=`<input data-k="${k}" placeholder="https://..."><input type="file" accept="image/*" data-up="${k}" style="margin-top:6px">`;
+  else h+=`<input data-k="${k}" ${t?`type="${t}"`:''}>`;
+ });
+ h+=`<h3>កម្មវិធី</h3><div id="prog"></div><button id="b-padd">+ បន្ថែមកម្មវិធី</button>
+ <h3>វិចិត្រសាលរូបភាព</h3><div class="th" id="gal"></div>
+ <input type="file" accept="image/*" multiple id="gup"><div class="row" style="margin-top:6px"><input id="gurl" placeholder="ឬដាក់ URL រូបភាព" style="width:100%"><button id="b-gadd">បន្ថែម</button></div>
+ <p class="hint">ចំណាំ៖ រូបដែល Upload ត្រូវបានបង្រួមទំហំ ហើយដាក់ក្នុងឯកសារ HTML តែមិនអាចដាក់ក្នុងតំណបានទេ។ បើមានរូបច្រើន សូមប្រើ «ទាញយកឯកសារ HTML» ឬដាក់ URL រូបភាពវិញ។</p></div>
+ <div class="pv"><iframe id="pv"></iframe></div></div>`;
+ document.body.innerHTML=h;
+ const $=s=>document.querySelector(s);
+ document.querySelectorAll('[data-k]').forEach(e=>e.value=d[e.dataset.k]||'');
+ let tm;
+ const refresh=()=>{try{localStorage.setItem('wd',JSON.stringify(d))}catch(e){}clearTimeout(tm);tm=setTimeout(()=>{$('#pv').srcdoc=build(d)},350)};
+ const drawProg=()=>{$('#prog').innerHTML=d.program.map((p,i)=>`<div class="row"><input data-p="${i}" data-f="t" value="${esc(p.t)}" placeholder="07:00"><input data-p="${i}" data-f="title" value="${esc(p.title)}" placeholder="ឈ្មោះកម្មវិធី"><button data-rp="${i}">✕</button></div>`).join('')};
+ const drawGal=()=>{$('#gal').innerHTML=d.gallery.map((u,i)=>`<div><img src="${esc(safe(u))}"><button data-rg="${i}">×</button></div>`).join('')};
+ drawProg();drawGal();refresh();
+ document.body.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset.k){d[t.dataset.k]=t.value;refresh()}
+  else if(t.dataset.p!==undefined){d.program[t.dataset.p][t.dataset.f]=t.value;refresh()}
+ });
+ document.body.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.dataset.rp!==undefined){d.program.splice(t.dataset.rp,1);drawProg();refresh()}
+  if(t.dataset.rg!==undefined){d.gallery.splice(t.dataset.rg,1);drawGal();refresh()}
+ });
+ $('#b-padd').onclick=()=>{d.program.push({t:'',title:''});drawProg()};
+ $('#b-gadd').onclick=()=>{const v=$('#gurl').value.trim();if(v){d.gallery.push(v);$('#gurl').value='';drawGal();refresh()}};
+ $('#gup').onchange=async e=>{for(const f of e.target.files)d.gallery.push(await compress(f,900,.72));e.target.value='';drawGal();refresh()};
+ document.querySelectorAll('[data-up]').forEach(i=>i.onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;const k=i.dataset.up;d[k]=await compress(f,1400,.75);
+  document.querySelector(`[data-k="${k}"]`).value='(រូបដែល Upload)';refresh()});
+ $('#b-link').onclick=()=>{
+  const link=location.href.split('#')[0]+'#d='+enc(d);
+  if(link.length>8000){alert('តំណវែងពេក ព្រោះមានរូបដែល Upload។ សូមប្រើប៊ូតុង «ទាញយកឯកសារ HTML» ឬដាក់រូបជា URL។');return}
+  if(navigator.clipboard)navigator.clipboard.writeText(link).then(()=>alert('បានចម្លងតំណ! ផ្ញើឱ្យអតិថិជនបាន។'),()=>prompt('ចម្លងតំណនេះ៖',link));
+  else prompt('ចម្លងតំណនេះ៖',link)};
+ $('#b-dl').onclick=()=>{
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([build(d)],{type:'text/html'}));
+  a.download='wedding-invitation.html';a.click()};
+ $('#b-open').onclick=()=>window.open(URL.createObjectURL(new Blob([build(d)],{type:'text/html'})));
+ $('#b-new').onclick=()=>{if(confirm('លុបទិន្នន័យទាំងអស់ ហើយចាប់ផ្តើមថ្មី?')){try{localStorage.removeItem('wd')}catch(e){}location.hash='#edit';location.reload()}};
+}
+
+addEventListener('hashchange',()=>location.reload());
+if(/^#edit/.test(location.hash))startEditor();
+else startViewer(Object.assign({},DEF,window.__DATA__||fromUrl()||{}));
+})();
+</script>
+</body>
+</html>
