@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>បង្កើតតំណអញ្ជើញភ្ញៀវ</title>
+<link rel="icon" href="/myweddingsite/favicon.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600&family=Moul&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#14110d;--card:#1f1a13;--gold:#d4af37;--text:#f4ecd8;--muted:#b9ae94;--line:rgba(212,175,55,.35)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Kantumruy Pro','Khmer OS Battambang',sans-serif;line-height:1.8;padding:24px 16px 80px}
+  main{max-width:760px;margin:0 auto}
+  h1{font-family:'Moul',serif;font-weight:400;color:var(--gold);font-size:1.4rem;text-align:center;line-height:1.9;margin:8px 0 4px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:28px}
+  .card{background:var(--card);border:1px solid var(--line);padding:20px;margin-bottom:20px}
+  h2{font-size:1.05rem;color:var(--gold);margin-bottom:12px;font-weight:600}
+  label{display:block;color:var(--muted);font-size:.9rem;margin:10px 0 4px}
+  input,select,textarea{width:100%;background:#120f0a;color:var(--text);border:1px solid var(--line);padding:11px 12px;font:inherit;border-radius:0}
+  textarea{min-height:120px;resize:vertical}
+  input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+  .row{display:grid;grid-template-columns:200px 1fr;gap:12px}
+  button,.btn{background:var(--gold);color:#1a1405;border:0;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer;margin-top:12px;text-decoration:none;display:inline-block}
+  button.ghost,.btn.ghost{background:none;color:var(--gold);border:1px solid var(--gold)}
+  .result{margin-top:14px;padding:12px;background:#120f0a;border:1px dashed var(--line);word-break:break-all;color:var(--text);min-height:48px}
+  .acts{display:flex;flex-wrap:wrap;gap:10px}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.95rem}
+  td,th{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+  th{color:var(--muted);font-weight:400}
+  td.n{width:38%}
+  td.l{color:var(--muted);word-break:break-all;font-size:.8rem}
+  td button{margin:0;padding:7px 12px;font-size:.85rem}
+  .note{color:var(--muted);font-size:.85rem;margin-top:8px}
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--gold);color:#1a1405;padding:10px 20px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s}
+  #toast.show{opacity:1}
+  @media(max-width:560px){.row{grid-template-columns:1fr}td.l{display:none}td.n{width:auto}}
+</style>
+</head>
+<body>
+<main>
+  <h1>បង្កើតតំណអញ្ជើញភ្ញៀវ</h1>
+  <p class="sub">វាយឈ្មោះភ្ញៀវ ចុចចម្លង រួចផ្ញើតាម Telegram / Messenger។ ភ្ញៀវនឹងឃើញឈ្មោះខ្លួនក្នុងលិខិតអញ្ជើញ។</p>
+
+  <div class="card">
+    <h2>១. អាសយដ្ឋានគេហទំព័រ</h2>
+    <label for="base">តំណគេហទំព័រ (ត្រូវតែត្រឹមត្រូវ)</label>
+    <input id="base" inputmode="url" autocomplete="off">
+    <p class="note">ត្រូវបានដាក់ស្វ័យប្រវត្តិ។ បើមានដូរ domain ថ្មី សូមកែត្រង់នេះ។</p>
+  </div>
+
+  <div class="card">
+    <h2>២. ភ្ញៀវម្នាក់</h2>
+    <div class="row">
+      <div><label for="title">គោរមងារ</label>
+        <select id="title">
+          <option value="">(គ្មាន)</option>
+          <option>លោក</option><option>លោកស្រី</option><option>អ្នកនាង</option><option>កញ្ញា</option>
+          <option>លោក និង លោកស្រី</option><option>ឯកឧត្តម</option><option>លោកជំទាវ</option>
+          <option>ឯកឧត្តម និង លោកជំទាវ</option><option>លោកអ្នកឧកញ៉ា</option><option>អ្នកឧកញ៉ា</option>
+          <option>លោកពូ</option><option>អ្នកមីង</option><option>លោកពូ និង អ្នកមីង</option>
+          <option>លោកអ៊ំ</option><option>អ្នកអ៊ំ</option><option>លោកតា</option><option>លោកយាយ</option>
+          <option>លោកគ្រូ</option><option>អ្នកគ្រូ</option><option>បងប្រុស</option><option>បងស្រី</option>
+          <option>ប្អូនប្រុស</option><option>ប្អូនស្រី</option>
+        </select></div>
+      <div><label for="gname">ឈ្មោះភ្ញៀវ</label><input id="gname" placeholder="ឧ. សុខ ចាន់" autocomplete="off"></div>
+    </div>
+    <div class="result" id="one" aria-live="polite">តំណនឹងបង្ហាញត្រង់នេះ</div>
+    <div class="acts">
+      <button id="copy1">ចម្លងតំណ</button>
+      <button id="copyMsg1" class="ghost">ចម្លងជាសារ</button>
+      <a id="tg1" class="btn ghost" target="_blank" rel="noopener">ផ្ញើតាម Telegram</a>
+      <button id="share1" class="ghost" hidden>ចែករំលែក</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>៣. ភ្ញៀវច្រើននាក់ក្នុងពេលតែមួយ</h2>
+    <label for="bulk">បញ្ចូលមួយឈ្មោះក្នុងមួយបន្ទាត់ (អាចដាក់គោរមងារ ឧ. «លោក សុខ ចាន់»)</label>
+    <textarea id="bulk" placeholder="លោក សុខ ចាន់&#10;លោកស្រី ដារា&#10;ឯកឧត្តម និង លោកជំទាវ វិបុល"></textarea>
+    <label for="msg">សារផ្ញើទៅភ្ញៀវ  ({name} = ឈ្មោះ, {link} = តំណ)</label>
+    <textarea id="msg" style="min-height:90px">សូមគោរពអញ្ជើញ {name} ចូលរួមពិធីអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។ សូមចុចតំណខាងក្រោមដើម្បីមើលលិខិតអញ្ជើញ៖
+{link}</textarea>
+    <div class="acts">
+      <button id="make">បង្កើតតំណទាំងអស់</button>
+      <button id="copyAll" class="ghost">ចម្លងទាំងអស់</button>
+      <button id="csv" class="ghost">ទាញយក CSV</button>
+      <button id="clear" class="ghost">លុបបញ្ជី</button>
+    </div>
+    <table id="tbl" hidden><thead><tr><th>ឈ្មោះ</th><th>តំណ</th><th></th></tr></thead><tbody></tbody></table>
+    <p class="note">បញ្ជីត្រូវបានរក្សាទុកក្នុង browser នេះ (មិនបាត់ពេលបិទទំព័រ)។</p>
+  </div>
+</main>
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var KEY='wedding_guest_list_v1';
+  var base=$('base');
+  var guess=/^https?:$/.test(location.protocol)?new URL('./',location.href).href:'https://veasnasor-cpu.github.io/myweddingsite/';
+  base.value=guess;
+
+  function toast(t){var e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('show')},1800)}
+  function copy(t){
+    if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(t).then(function(){toast('បានចម្លងរួចរាល់')},fb)}
+    fb();
+    function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('បានចម្លងរួចរាល់')}catch(e){toast('ចម្លងមិនបាន')}a.remove()}
+  }
+  function mk(name){
+    var b=base.value.trim(); if(b&&b.slice(-1)!=='/'&&b.indexOf('?')<0)b+='/';
+    return b+'?to='+encodeURIComponent(name.trim());
+  }
+  function msgFor(name,link){return ($('msg').value||'{link}').split('{name}').join(name).split('{link}').join(link)}
+
+  // single
+  function one(){
+    var name=(($('title').value?$('title').value+' ':'')+$('gname').value).trim();
+    var el=$('one');
+    if(!$('gname').value.trim()){el.textContent='តំណនឹងបង្ហាញត្រង់នេះ';el.dataset.link='';$('tg1').removeAttribute('href');return}
+    var l=mk(name); el.textContent=l; el.dataset.link=l; el.dataset.name=name;
+    $('tg1').href='https://t.me/share/url?url='+encodeURIComponent(l)+'&text='+encodeURIComponent(msgFor(name,'').replace(/\s+$/,''));
+  }
+  ['title','gname','base','msg'].forEach(function(i){$(i).addEventListener('input',one)});
+  $('title').addEventListener('change',one);
+  function need(){var l=$('one').dataset.link;if(!l){toast('សូមវាយឈ្មោះភ្ញៀវជាមុនសិន');$('gname').focus()}return l}
+  $('copy1').onclick=function(){var l=need();if(l)copy(l)};
+  $('copyMsg1').onclick=function(){var l=need();if(l)copy(msgFor($('one').dataset.name,l))};
+  $('tg1').addEventListener('click',function(e){if(!need())e.preventDefault()});
+  if(navigator.share){$('share1').hidden=false;$('share1').onclick=function(){var l=need();if(l)navigator.share({title:'លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍',text:msgFor($('one').dataset.name,l),url:l}).catch(function(){})}}
+
+  // bulk
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){list=[]}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(list))}catch(e){}}
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+  function render(){
+    var tb=$('tbl').querySelector('tbody');
+    $('tbl').hidden=!list.length;
+    tb.innerHTML=list.map(function(n,i){
+      var l=mk(n);
+      return '<tr><td class="n">'+esc(n)+'</td><td class="l">'+esc(l)+'</td><td><button data-c="'+i+'">ចម្លងតំណ</button> <button class="ghost" data-m="'+i+'">ចម្លងសារ</button></td></tr>';
+    }).join('');
+  }
+  $('make').onclick=function(){
+    var lines=$('bulk').value.split(/\r?\n/).map(function(x){return x.trim()}).filter(Boolean);
+    if(!lines.length){toast('សូមបញ្ចូលឈ្មោះភ្ញៀវ');return}
+    lines.forEach(function(n){if(list.indexOf(n)<0)list.push(n)});
+    save();render();$('bulk').value='';toast('បានបង្កើត '+lines.length+' តំណ');
+  };
+  $('tbl').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.c!=null)copy(mk(list[b.dataset.c]));
+    if(b.dataset.m!=null){var n=list[b.dataset.m];copy(msgFor(n,mk(n)))}
+  });
+  $('copyAll').onclick=function(){if(!list.length)return toast('មិនទាន់មានបញ្ជី');copy(list.map(function(n){return n+'\t'+mk(n)}).join('\n'))};
+  $('csv').onclick=function(){
+    if(!list.length)return toast('មិនទាន់មានបញ្ជី');
+    var csv='\uFEFFname,link\n'+list.map(function(n){return '"'+n.replace(/"/g,'""')+'","'+mk(n)+'"'}).join('\n');
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='guest-links.csv';a.click();
+  };
+  $('clear').onclick=function(){if(list.length&&confirm('លុបបញ្ជីទាំងអស់?')){list=[];save();render()}};
+  base.addEventListener('input',render);
+  render();one();
+})();
+</script>
+</body>
+</html>
