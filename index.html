@@ -1,300 +1,201 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍</title>
-<link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap" rel="stylesheet">
-<style id="css">
-*{box-sizing:border-box}
-body{margin:0;font-family:'Battambang',sans-serif;background:#f3ebe3}
-/* ===== ទំព័រអញ្ជើញ ===== */
-.v{--c:#b8860b;max-width:520px;margin:0 auto;background:#fffaf5;color:#3a2e2a;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,.12)}
-.v section{position:relative;overflow:hidden;padding:48px 24px;text-align:center}
-.v section>.w{position:relative;z-index:1}
-.v h2{font-family:'Moul',serif;color:var(--c);font-weight:400;font-size:20px;margin:0 0 18px}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px!important}
-.hero .w{width:100%;display:flex;flex-direction:column;align-items:center}
-.hero small{letter-spacing:2px;opacity:.9}
-.hero .names{font-family:'Moul',serif;font-size:34px;line-height:1.6;margin:18px 0}
-.hero .amp{font-size:26px;opacity:.85}
-.hero .dt{font-size:16px;margin-top:8px}
-.pl{white-space:pre-line;line-height:2}
-.cd{display:flex;gap:10px;justify-content:center;margin-top:20px}
-.cd div{background:var(--c);color:#fff;border-radius:12px;padding:12px 4px;width:72px}
-.cd b{display:block;font-size:24px}.cd span{font-size:12px}
-.tl{list-style:none;margin:0;padding:0;text-align:left;border-left:2px solid var(--c);margin-left:16px}
-.tl li{position:relative;padding:0 0 22px 22px}
-.tl li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--c)}
-.tl b{color:var(--c)}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
-.v iframe{width:100%;height:280px;border:0;border-radius:12px}
-.btn{display:inline-block;background:var(--c);color:#fff;text-decoration:none;border:0;border-radius:30px;padding:14px 28px;font:inherit;font-size:16px;cursor:pointer}
-.music{position:fixed;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;border:0;background:var(--c);color:#fff;font-size:20px;cursor:pointer;z-index:9}
-/* Effect ពេលបង្ហាញ */
-.rv{opacity:0;transition:opacity .9s ease,transform .9s ease}
-.rv.in{opacity:1;transform:none}
-.fx-fadeup{transform:translateY(40px)}
-.fx-zoom{transform:scale(.8)}
-.fx-left{transform:translateX(-70px)}
-.fx-right{transform:translateX(70px)}
-.fx-flip{transform:perspective(700px) rotateX(35deg)}
-/* Effect លម្អ */
-.deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.deco span{position:absolute;display:block;animation-iteration-count:infinite;animation-timing-function:linear}
-.dc-hearts span{animation-name:rise}
-.dc-petals span,.dc-confetti span{animation-name:fall}
-.dc-sparkle span{animation-name:tw;animation-timing-function:ease-in-out}
-@keyframes fall{from{top:-8%;opacity:0}10%{opacity:.95}to{top:105%;opacity:0}}
-@keyframes rise{from{top:105%;opacity:0}10%{opacity:.95}to{top:-8%;opacity:0}}
-@keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.1)}}
-@media(prefers-reduced-motion:reduce){.deco{display:none}.rv{opacity:1;transform:none;transition:none}}
-/* ===== កម្មវិធីកែប្រែ ===== */
-.ed{display:grid;grid-template-columns:420px 1fr;height:100vh}
-.ed .pn{overflow:auto;padding:18px;background:#fff;border-right:1px solid #ddd}
-.ed h1{font-size:20px;margin:0 0 4px}.ed .hint{font-size:13px;color:#666;margin:0 0 14px;line-height:1.7}
-.ed label{display:block;font-size:13px;margin:12px 0 4px;color:#444}
-.ed input,.ed textarea,.ed select{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;font:inherit;font-size:14px;background:#fff}
-.ed input[type=color]{height:40px;padding:2px}
-.ed textarea{min-height:90px}
-.ed .row{display:flex;gap:6px;margin-bottom:6px}.ed .row input:first-child{width:110px;flex:none}
-.ed button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:9px 12px;background:#eee}
-.ed button.p{background:#b8860b;color:#fff}
-.ed .acts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-.ed .th{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.ed .th div{position:relative}.ed .th img{width:64px;height:64px;object-fit:cover;border-radius:8px}
-.ed .th button{position:absolute;top:-6px;right:-6px;padding:0;width:20px;height:20px;border-radius:50%;background:#c33;color:#fff;line-height:20px}
-.ed .pv{background:#ddd;display:flex;justify-content:center;align-items:stretch}
-.ed iframe{width:100%;max-width:520px;height:100%;border:0;background:#fff}
-.ed h3{margin:22px 0 4px;font-size:15px}
-.ed .sb{border:1px solid #e3d6c3;background:#fffaf3;border-radius:12px;padding:10px 12px;margin:10px 0}
-.ed .sb>b{color:#8a6a1f}
-.ed .cs{display:flex;gap:8px;margin-top:6px}.ed .cs span{flex:1;font-size:12px;color:#555}
-@media(max-width:800px){.ed{display:block;height:auto}.ed .pv{height:80vh}.ed .pn{border:0}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍</title>
+  <link rel="icon" href="favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600&family=Moul&family=Preahvihear&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#3a0f1a; --surface:#4b1624; --gold:#d9b25e; --text:#f7efe0;
+      --muted:color-mix(in srgb,var(--text) 72%,transparent);
+      --line:color-mix(in srgb,var(--gold) 45%,transparent);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Kantumruy Pro','Khmer OS Battambang',sans-serif;
+      line-height:1.9;font-size:17px;
+      padding-bottom:env(safe-area-inset-bottom,0);
+    }
+    section{max-width:640px;margin:0 auto;padding:64px 24px;text-align:center}
+    .rule{height:1px;background:var(--line);max-width:640px;margin:0 auto}
+    h1,h2,.names{font-family:'Moul',serif;font-weight:400;color:var(--gold)}
+    h2{font-size:1.2rem;margin-bottom:24px;line-height:1.8}
+    p{color:var(--muted)}
+
+    /* hero */
+    .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+      padding-top:max(64px,env(safe-area-inset-top));
+      background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--gold) 16%,transparent),transparent 60%)}
+    .hero .small{font-family:'Preahvihear',serif;color:var(--gold);font-size:1.05rem}
+    .photo{width:170px;height:170px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);
+      outline:6px solid var(--bg);box-shadow:0 0 0 7px var(--line);margin:28px 0 8px}
+    .names{font-size:clamp(2.2rem,11vw,3.6rem);line-height:1.5;margin:20px 0}
+    .names .and{display:block;font-family:'Preahvihear',serif;font-size:1.3rem;color:var(--text);margin:2px 0}
+    .guest{margin-top:8px;font-size:1.05rem;color:var(--text)}
+    .guest b{color:var(--gold);font-weight:600}
+    .date-big{font-family:'Preahvihear',serif;font-size:1.15rem;color:var(--text);margin-top:12px}
+    .hint{margin-top:36px;color:var(--gold);font-size:.9rem;animation:bob 2.4s ease-in-out infinite}
+    @keyframes bob{50%{transform:translateY(6px)}}
+    .hero > *{animation:rise .9s both}
+    .hero > *:nth-child(2){animation-delay:.12s}.hero > *:nth-child(3){animation-delay:.24s}
+    .hero > *:nth-child(4){animation-delay:.36s}.hero > *:nth-child(5){animation-delay:.48s}
+    @keyframes rise{from{opacity:0;transform:translateY(16px)}}
+
+    /* parents */
+    .parents{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+    .parents div{border:1px solid var(--line);background:var(--surface);padding:20px 12px}
+    .parents h3{font-family:'Preahvihear',serif;font-weight:400;color:var(--gold);margin-bottom:6px}
+    .parents p{line-height:1.7}
+
+    /* date + venue */
+    .when{font-family:'Preahvihear',serif;font-size:1.25rem;color:var(--text)}
+    .venue{margin:20px 0 8px;font-weight:600;color:var(--text);font-size:1.15rem}
+    .btn{display:inline-block;margin-top:22px;padding:12px 28px;border:1px solid var(--gold);color:var(--gold);
+      text-decoration:none;font-family:inherit;font-size:1rem;background:none;cursor:pointer;transition:background .2s,color .2s}
+    .btn:hover,.btn:focus-visible{background:var(--gold);color:var(--bg);outline:none}
+
+    /* countdown */
+    .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+    .count div{background:var(--surface);border:1px solid var(--line);padding:16px 4px}
+    .count b{display:block;font-family:'Moul',serif;font-weight:400;font-size:1.7rem;color:var(--gold);line-height:1.5}
+    .count span{font-size:.9rem;color:var(--muted)}
+    .done{font-family:'Moul',serif;color:var(--gold);font-size:1.1rem;line-height:2}
+
+    /* schedule */
+    .sched{list-style:none;text-align:left;max-width:460px;margin:0 auto}
+    .sched li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .sched li:last-child{border-bottom:0}
+    .sched time{font-family:'Preahvihear',serif;color:var(--gold)}
+    .sched span{color:var(--text)}
+
+    /* contacts */
+    .contacts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .contacts a{display:block;min-width:200px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);
+      color:var(--text);text-decoration:none}
+    .contacts a small{display:block;color:var(--muted);font-size:.9rem}
+    .contacts a b{color:var(--gold);font-weight:600;font-size:1.15rem}
+    footer{padding:40px 24px calc(90px + env(safe-area-inset-bottom,0));text-align:center;color:var(--muted);font-size:.9rem}
+
+    /* music */
+    #music{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0));width:48px;height:48px;border-radius:50%;
+      border:1px solid var(--gold);background:var(--surface);color:var(--gold);font-size:20px;cursor:pointer;z-index:10}
+    #music:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+    #music.on{animation:spin 6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    [hidden]{display:none!important}
+
+    @media (max-width:480px){
+      .parents{grid-template-columns:1fr}
+      .count b{font-size:1.35rem}
+      .sched li{grid-template-columns:90px 1fr;gap:10px}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+  </style>
 </head>
 <body>
-<div id="app"></div>
-<script id="data-slot"></script>
-<script>
-(function(){
-// រក្សាទុកគំរូទំព័រ សម្រាប់បង្កើតឯកសារជូនអតិថិជន
-const SRC='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-const SLOT='<script id="data-slot">'+'</'+'script>';
+  <main id="app"></main>
+  <button id="music" aria-label="បើក/បិទតន្ត្រី" hidden>♪</button>
+  <audio id="audio" loop preload="none"></audio>
 
-const KM=['មករា','កុម្ភៈ','មីនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'];
-const WD=['អាទិត្យ','ច័ន្ទ','អង្គារ','ពុធ','ព្រហស្បតិ៍','សុក្រ','សៅរ៍'];
-const kh=s=>String(s).replace(/\d/g,c=>'០១២៣៤៥៦៧៨៩'[c]);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const safe=u=>{u=(u||'').trim();return(/^(https?:|tel:|mailto:|data:image\/)/i.test(u)||(u&&!/^[a-z]+:/i.test(u)))?u:''};
-const cssUrl=u=>u.replace(/'/g,'%27').replace(/\(/g,'%28').replace(/\)/g,'%29');
-const col=(v,f)=>/^#[0-9a-f]{6}$/i.test(v||'')?v:f;
+  <script src="config.js"></script>
+  <script>
+  (function(){
+    var C = window.WEDDING || {};
+    var $ = function(s){return document.querySelector(s)};
+    var esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+    var kh = function(n){return String(n).replace(/\d/g,function(d){return '០១២៣៤៥៦៧៨៩'[d]})};
 
-// ផ្នែកនីមួយៗ: ពណ៌ និង Effect
-const SK=['hero','invite','program','gallery','map','rsvp','footer'];
-const SL={hero:'ក្បាលទំព័រ',invite:'ពាក្យអញ្ជើញ',program:'កម្មវិធី',gallery:'វិចិត្រសាលរូបភាព',map:'ទីតាំង',rsvp:'ការចូលរួម',footer:'ពាក្យបញ្ចប់'};
-const FXL=[['none','គ្មាន'],['fade','ចេញបន្តិចម្តងៗ (Fade)'],['fadeup','ឡើងពីក្រោម'],['zoom','ពង្រីក (Zoom)'],['left','ចូលពីឆ្វេង'],['right','ចូលពីស្តាំ'],['flip','បត់ (Flip)']];
-const DCL=[['none','គ្មាន'],['hearts','បេះដូងរសាត់ឡើង ♥'],['petals','ផ្កាជ្រុះ 🌸'],['sparkle','ផ្កាយភ្លឹបភ្លែត ✦'],['confetti','ក្រដាសពណ៌ជ្រុះ']];
-const DS={
- hero:{bg:'#8a6a1f',text:'#ffffff',accent:'#ffffff',fx:'fadeup',deco:'sparkle',bgImage:''},
- invite:{bg:'#fffaf5',text:'#3a2e2a',accent:'#b8860b',fx:'fadeup',deco:'none',bgImage:''},
- program:{bg:'#fff3e6',text:'#3a2e2a',accent:'#b8860b',fx:'left',deco:'none',bgImage:''},
- gallery:{bg:'#fffaf5',text:'#3a2e2a',accent:'#b8860b',fx:'zoom',deco:'none',bgImage:''},
- map:{bg:'#fff3e6',text:'#3a2e2a',accent:'#b8860b',fx:'fadeup',deco:'none',bgImage:''},
- rsvp:{bg:'#fffaf5',text:'#3a2e2a',accent:'#b8860b',fx:'zoom',deco:'hearts',bgImage:''},
- footer:{bg:'#2b2220',text:'#eeeeee',accent:'#e0c080',fx:'fade',deco:'none',bgImage:''}
-};
-const getSec=(d,k)=>Object.assign({},DS[k],(d.sections&&d.sections[k])||{});
+    // colors
+    var col = C.colors || {}, r = document.documentElement.style;
+    if(col.background) r.setProperty('--bg',col.background);
+    if(col.surface)    r.setProperty('--surface',col.surface);
+    if(col.gold)       r.setProperty('--gold',col.gold);
+    if(col.text)       r.setProperty('--text',col.text);
+    if(C.pageTitle) document.title = C.pageTitle;
 
-const DEF={
- groom:'វាសនា',bride:'សុជីវ៉ា',date:'2026-12-20',time:'08:00',
- venue:'សាលជប់លៀង',address:'ភ្នំពេញ ប្រទេសកម្ពុជា',mapQuery:'Phnom Penh',
- message:'សូមគោរពអញ្ជើញ ឯកឧត្តម លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា\nចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស\nក្នុងពិធីអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ',
- program:[{t:'07:00',title:'ពិធីហែរជំនូន'},{t:'08:00',title:'ពិធីសូត្រមន្ត និងបង្សុកូល'},{t:'11:00',title:'ពិធីកាត់សក់ បង់សំពត់'},{t:'18:00',title:'ពិធីជប់លៀង'}],
- gallery:[],heroImage:'',music:'',
- rsvpUrl:'',rsvpLabel:'បញ្ជាក់ការចូលរួម',color:'#b8860b',
- footer:'សូមអរគុណចំពោះការអញ្ជើញចូលរួម\nវាសនា & សុជីវ៉ា'
-};
+    // guest name from link: ?to=ឈ្មោះភ្ញៀវ
+    var guest = new URLSearchParams(location.search).get('to');
 
-const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-const dec=s=>{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return JSON.parse(decodeURIComponent(escape(atob(s))))};
-const fromUrl=()=>{const m=location.hash.match(/^#d=(.+)$/);if(m){try{return dec(m[1])}catch(e){}}return null};
-const saved=()=>{try{return JSON.parse(localStorage.getItem('wd')||'null')}catch(e){return null}};
+    var parents = function(title, arr){
+      return '<div><h3>'+esc(title)+'</h3>'+(arr||[]).map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>';
+    };
 
-function build(d){
- return SRC.replace(SLOT,()=>'<script id="data-slot">window.__DATA__='+JSON.stringify(d).replace(/</g,'\\u003c')+'</'+'script>');
-}
+    var html = '';
+    html += '<section class="hero">'
+      + '<p class="small">'+esc(C.headline)+'</p>'
+      + (C.photo ? '<img class="photo" src="'+esc(C.photo)+'" alt="">' : '')
+      + '<h1 class="names">'+esc(C.groom)+'<span class="and">និង</span>'+esc(C.bride)+'</h1>'
+      + '<p class="date-big">'+esc(C.dateText)+'</p>'
+      + (guest ? '<p class="guest">សូមគោរពអញ្ជើញ <b>'+esc(guest)+'</b></p>' : '')
+      + '<p class="hint">រំកិលចុះក្រោម ↓</p></section>';
 
-// បង្កើតផ្នែកមួយ ជាមួយពណ៌ រូបផ្ទៃក្រោយ និង Effect
-function sec(d,k,inner){
- const s=getSec(d,k),D=DS[k];
- const bg=col(s.bg,D.bg),tx=col(s.text,D.text),ac=col(s.accent,D.accent);
- const fx=FXL.some(f=>f[0]===s.fx)?s.fx:'none';
- const deco=DCL.some(f=>f[0]===s.deco)&&s.deco!=='none'?s.deco:'';
- let st=`background-color:${bg};color:${tx};--c:${ac};`;
- if(k==='hero'){
-  const hi=safe(d.heroImage);
-  if(hi)st+=`background-image:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)),url('${cssUrl(hi)}');`;
- }else{
-  const bi=safe(s.bgImage);
-  if(bi)st+=`background-image:linear-gradient(${bg}cc,${bg}cc),url('${cssUrl(bi)}');`;
- }
- st+='background-size:cover;background-position:center;';
- return `<section class="${k==='hero'?'hero':''}" data-deco="${deco}" style="${esc(st)}"><div class="w${fx!=='none'?' rv fx-'+fx:''}">${inner}</div></section>`;
-}
+    html += '<div class="rule"></div><section><h2>សេចក្តីអញ្ជើញ</h2>'
+      + '<p>'+esc(C.invitationText)+'</p><div style="height:28px"></div>'
+      + '<div class="parents">'+parents('ខាងកូនកំលោះ',C.groomParents)+parents('ខាងកូនក្រមុំ',C.brideParents)+'</div></section>';
 
-function render(d){
- const dt=new Date(d.date+'T'+(d.time||'00:00'));
- const ok=!isNaN(dt);
- const dateTxt=ok?`ថ្ងៃ${WD[dt.getDay()]} ទី${kh(dt.getDate())} ខែ${KM[dt.getMonth()]} ឆ្នាំ${kh(dt.getFullYear())} វេលាម៉ោង ${kh(d.time||'')}`:'';
- let h=`<div class="v" style="--c:${col(d.color,'#b8860b')}">`;
- h+=sec(d,'hero',`<small>លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍</small>
-  <div class="names">${esc(d.groom)}<div class="amp">&amp;</div>${esc(d.bride)}</div>
-  <div class="dt">${esc(dateTxt)}</div>`);
- h+=sec(d,'invite',`<h2>សូមគោរពអញ្ជើញ</h2><div class="pl">${esc(d.message)}</div>
-  <div style="margin-top:22px;line-height:1.9"><b>${esc(d.venue)}</b><br>${esc(d.address)}</div>
-  ${ok?`<div class="cd"><div><b id="cd-d">0</b><span>ថ្ងៃ</span></div><div><b id="cd-h">0</b><span>ម៉ោង</span></div><div><b id="cd-m">0</b><span>នាទី</span></div><div><b id="cd-s">0</b><span>វិនាទី</span></div></div>`:''}`);
- const pr=(d.program||[]).filter(p=>p.title||p.t);
- if(pr.length)h+=sec(d,'program',`<h2>កម្មវិធី</h2><ul class="tl">${pr.map(p=>`<li><b>${esc(kh(p.t||''))}</b><br>${esc(p.title||'')}</li>`).join('')}</ul>`);
- const g=(d.gallery||[]).map(safe).filter(Boolean);
- if(g.length)h+=sec(d,'gallery',`<h2>វិចិត្រសាលរូបភាព</h2><div class="gal">${g.map(u=>`<img src="${esc(u)}" alt="">`).join('')}</div>`);
- if(d.mapQuery)h+=sec(d,'map',`<h2>ទីតាំង</h2><iframe loading="lazy" src="https://maps.google.com/maps?q=${encodeURIComponent(d.mapQuery)}&output=embed"></iframe><p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.mapQuery)}">បើកក្នុង Google Maps</a></p>`);
- if(safe(d.rsvpUrl))h+=sec(d,'rsvp',`<h2>ការចូលរួម</h2><a class="btn" target="_blank" rel="noopener" href="${esc(safe(d.rsvpUrl))}">${esc(d.rsvpLabel||'បញ្ជាក់ការចូលរួម')}</a>`);
- h+=sec(d,'footer',`<div class="pl">${esc(d.footer)}</div>`);
- if(safe(d.music))h+=`<audio id="bgm" loop src="${esc(safe(d.music))}"></audio><button class="music" id="mbtn" title="ភ្លេង">♪</button>`;
- return h+'</div>';
-}
+    html += '<div class="rule"></div><section><h2>ថ្ងៃ និងទីកន្លែង</h2>'
+      + '<p class="when">'+esc(C.dateText)+'</p>'
+      + (C.lunarText ? '<p>'+esc(C.lunarText)+'</p>' : '')
+      + '<p class="venue">'+esc(C.venueName)+'</p><p>'+esc(C.venueAddress)+'</p>'
+      + (C.mapLink ? '<a class="btn" href="'+esc(C.mapLink)+'" target="_blank" rel="noopener">មើលផែនទី</a>' : '')
+      + '</section>';
 
-// ដាក់ Effect លម្អ និង Effect ពេលបង្ហាញ
-function effects(root){
- const r=Math.random,PAL=['#e8587a','#f5d77a','#7ec8e3','#9be39b','#f4a261','#c792ea'];
- root.querySelectorAll('section[data-deco]').forEach(s=>{
-  const k=s.getAttribute('data-deco');if(!k)return;
-  const box=document.createElement('div');box.className='deco dc-'+k;
-  for(let i=0;i<16;i++){
-   const p=document.createElement('span');
-   p.style.left=(r()*96)+'%';
-   p.style.animationDuration=(k==='sparkle'?2+r()*3:6+r()*8)+'s';
-   p.style.animationDelay=(-r()*12)+'s';
-   if(k==='hearts'){p.textContent='♥';p.style.color=r()>.5?'#e8587a':'#f19cb3';p.style.fontSize=(10+r()*16)+'px'}
-   else if(k==='petals'){p.textContent='🌸';p.style.fontSize=(14+r()*12)+'px'}
-   else if(k==='sparkle'){p.textContent='✦';p.style.color='#f5d77a';p.style.fontSize=(8+r()*12)+'px';p.style.top=(r()*95)+'%'}
-   else{p.style.width='8px';p.style.height='12px';p.style.background=PAL[Math.floor(r()*PAL.length)]}
-   box.appendChild(p);
-  }
-  s.insertBefore(box,s.firstChild);
- });
- const els=root.querySelectorAll('.rv');
- if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.05});
- els.forEach(e=>io.observe(e));
-}
+    html += '<div class="rule"></div><section><h2>រាប់ថយក្រោយ</h2><div id="count"></div></section>';
 
-function startViewer(d){
- document.title='អាពាហ៍ពិពាហ៍ '+d.groom+' & '+d.bride;
- const app=document.getElementById('app');
- app.innerHTML=render(d);
- effects(app);
- const t=new Date(d.date+'T'+(d.time||'00:00')).getTime();
- const set=(i,v)=>{const e=document.getElementById(i);if(e)e.textContent=kh(v)};
- const tick=()=>{let s=Math.max(0,Math.floor((t-Date.now())/1000));set('cd-d',Math.floor(s/86400));set('cd-h',Math.floor(s%86400/3600));set('cd-m',Math.floor(s%3600/60));set('cd-s',s%60)};
- if(!isNaN(t)){tick();setInterval(tick,1000)}
- const b=document.getElementById('mbtn'),a=document.getElementById('bgm');
- if(b&&a)b.onclick=()=>{if(a.paused){a.play();b.textContent='❚❚'}else{a.pause();b.textContent='♪'}};
-}
+    if(C.schedule && C.schedule.length){
+      html += '<div class="rule"></div><section><h2>កម្មវិធី</h2><ul class="sched">'
+        + C.schedule.map(function(s){return '<li><time>'+esc(s.time)+'</time><span>'+esc(s.title)+'</span></li>'}).join('')
+        + '</ul></section>';
+    }
 
-function compress(file,max,q){
- return new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
-  const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');
-  c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-  res(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(file)});
-}
+    if(C.contacts && C.contacts.length){
+      html += '<div class="rule"></div><section><h2>ទំនាក់ទំនង</h2><div class="contacts">'
+        + C.contacts.map(function(c){
+            return '<a href="tel:'+esc(String(c.phone).replace(/\s/g,''))+'"><small>'+esc(c.label)+'</small><b>'+esc(c.phone)+'</b></a>';
+          }).join('')
+        + '</div><p style="margin-top:28px">'+esc(C.closingText)+'</p></section>';
+    }
 
-function startEditor(){
- let d=Object.assign({},DEF,fromUrl()||saved()||window.__DATA__||{});
- d.program=d.program||[];d.gallery=d.gallery||[];
- d.sections={};SK.forEach(k=>{d.sections[k]=getSec(Object.assign({},fromUrl()||saved()||window.__DATA__||{}),k)});
- const F=[['groom','ឈ្មោះកូនកំលោះ'],['bride','ឈ្មោះកូនក្រមុំ'],['date','កាលបរិច្ឆេទ','date'],['time','ម៉ោង','time'],
-  ['venue','ឈ្មោះទីកន្លែង'],['address','អាសយដ្ឋាន'],['mapQuery','ឈ្មោះកន្លែងសម្រាប់ផែនទី Google Maps'],
-  ['message','ពាក្យអញ្ជើញ','textarea'],['heroImage','រូបភាពក្បាលទំព័រ (ដាក់ URL ឬ Upload)','img'],
-  ['music','តំណភ្លេង (ឯកសារ .mp3 URL)'],['rsvpUrl','តំណបញ្ជាក់ការចូលរួម (Telegram / Google Form)'],
-  ['rsvpLabel','អក្សរលើប៊ូតុង'],['color','ពណ៌ចម្បង (ប៊ូតុងភ្លេង និងពណ៌ទូទៅ)','color'],['footer','ពាក្យបញ្ចប់','textarea']];
- const opt=l=>l.map(([a,b])=>`<option value="${a}">${b}</option>`).join('');
- let h=`<div class="ed"><div class="pn"><h1>កម្មវិធីបង្កើតលិខិតអញ្ជើញ</h1>
- <p class="hint">កែព័ត៌មានខាងក្រោម ហើយមើលលទ្ធផលនៅខាងស្តាំភ្លាមៗ។ ពេលរួច ចុច «ចម្លងតំណ» ឬ «ទាញយកឯកសារ» ផ្ញើឱ្យអតិថិជន។ ការកែប្រែត្រូវបានរក្សាទុកក្នុងកុំព្យូទ័រនេះដោយស្វ័យប្រវត្តិ។</p>
- <div class="acts"><button class="p" id="b-link">ចម្លងតំណ</button><button class="p" id="b-dl">ទាញយកឯកសារ HTML</button><button id="b-open">មើលពេញអេក្រង់</button><button id="b-new">ចាប់ផ្តើមថ្មី</button></div>`;
- F.forEach(([k,l,t])=>{
-  h+=`<label>${l}</label>`;
-  if(t==='textarea')h+=`<textarea data-k="${k}"></textarea>`;
-  else if(t==='img')h+=`<input data-k="${k}" placeholder="https://..."><input type="file" accept="image/*" data-up="${k}" style="margin-top:6px">`;
-  else h+=`<input data-k="${k}" ${t?`type="${t}"`:''}>`;
- });
- h+=`<h3>កម្មវិធី</h3><div id="prog"></div><button id="b-padd">+ បន្ថែមកម្មវិធី</button>
- <h3>វិចិត្រសាលរូបភាព</h3><div class="th" id="gal"></div>
- <input type="file" accept="image/*" multiple id="gup"><div class="row" style="margin-top:6px"><input id="gurl" placeholder="ឬដាក់ URL រូបភាព" style="width:100%"><button id="b-gadd">បន្ថែម</button></div>
- <h3>ពណ៌ និង Effect តាមទំព័រនីមួយៗ</h3>
- <p class="hint">ជ្រើសពណ៌ផ្ទៃក្រោយ ពណ៌អក្សរ ពណ៌ក្បាលអក្សរ/ប៊ូតុង និង Effect សម្រាប់ទំព័រនីមួយៗដាច់ដោយឡែក។ «Effect ពេលបង្ហាញ» ដំណើរការពេលអ្នកមើលអូសមកដល់ទំព័រនោះ ហើយ «Effect លម្អ» ជារូបតូចៗរសាត់ក្នុងផ្ទៃក្រោយ។</p>
- <button id="b-acc">ប្រើពណ៌ចម្បងខាងលើ ជាពណ៌ក្បាលអក្សរ/ប៊ូតុងគ្រប់ទំព័រ</button>`;
- SK.forEach(k=>{
-  h+=`<div class="sb"><b>${SL[k]}</b>
-  <div class="cs"><span>ផ្ទៃក្រោយ<input type="color" data-s="${k}" data-sf="bg"></span><span>អក្សរ<input type="color" data-s="${k}" data-sf="text"></span><span>ក្បាលអក្សរ/ប៊ូតុង<input type="color" data-s="${k}" data-sf="accent"></span></div>
-  <label>Effect ពេលបង្ហាញ</label><select data-s="${k}" data-sf="fx">${opt(FXL)}</select>
-  <label>Effect លម្អ</label><select data-s="${k}" data-sf="deco">${opt(DCL)}</select>`;
-  if(k==='hero')h+=`<p class="hint" style="margin:8px 0 0">រូបផ្ទៃក្រោយនៃក្បាលទំព័រ កំណត់នៅ «រូបភាពក្បាលទំព័រ» ខាងលើ។</p>`;
-  else h+=`<label>រូបផ្ទៃក្រោយ (URL ឬ Upload)</label><input data-s="${k}" data-sf="bgImage" placeholder="https://..."><input type="file" accept="image/*" data-supl="${k}" style="margin-top:6px">`;
-  h+=`</div>`;
- });
- h+=`<p class="hint">ចំណាំ៖ រូបដែល Upload ត្រូវបានបង្រួមទំហំ ហើយដាក់ក្នុងឯកសារ HTML តែមិនអាចដាក់ក្នុងតំណបានទេ។ បើមានរូបច្រើន សូមប្រើ «ទាញយកឯកសារ HTML» ឬដាក់រូបជា URL វិញ។</p></div>
- <div class="pv"><iframe id="pv"></iframe></div></div>`;
- document.body.innerHTML=h;
- const $=s=>document.querySelector(s);
- const shown=v=>String(v||'').indexOf('data:')===0?'(រូបដែល Upload)':(v||'');
- document.querySelectorAll('[data-k]').forEach(e=>e.value=shown(d[e.dataset.k]));
- const syncS=()=>document.querySelectorAll('[data-s]').forEach(e=>e.value=shown(d.sections[e.dataset.s][e.dataset.sf]));
- syncS();
- let tm;
- const refresh=()=>{try{localStorage.setItem('wd',JSON.stringify(d))}catch(e){}clearTimeout(tm);tm=setTimeout(()=>{$('#pv').srcdoc=build(d)},350)};
- const drawProg=()=>{$('#prog').innerHTML=d.program.map((p,i)=>`<div class="row"><input data-p="${i}" data-f="t" value="${esc(p.t)}" placeholder="07:00"><input data-p="${i}" data-f="title" value="${esc(p.title)}" placeholder="ឈ្មោះកម្មវិធី"><button data-rp="${i}">✕</button></div>`).join('')};
- const drawGal=()=>{$('#gal').innerHTML=d.gallery.map((u,i)=>`<div><img src="${esc(safe(u))}"><button data-rg="${i}">×</button></div>`).join('')};
- drawProg();drawGal();refresh();
- document.body.addEventListener('input',e=>{
-  const t=e.target;
-  if(t.dataset.k){d[t.dataset.k]=t.value;refresh()}
-  else if(t.dataset.p!==undefined){d.program[t.dataset.p][t.dataset.f]=t.value;refresh()}
-  else if(t.dataset.s!==undefined){d.sections[t.dataset.s][t.dataset.sf]=t.value;refresh()}
- });
- document.body.addEventListener('click',e=>{
-  const t=e.target;
-  if(t.dataset.rp!==undefined){d.program.splice(t.dataset.rp,1);drawProg();refresh()}
-  if(t.dataset.rg!==undefined){d.gallery.splice(t.dataset.rg,1);drawGal();refresh()}
- });
- $('#b-padd').onclick=()=>{d.program.push({t:'',title:''});drawProg()};
- $('#b-gadd').onclick=()=>{const v=$('#gurl').value.trim();if(v){d.gallery.push(v);$('#gurl').value='';drawGal();refresh()}};
- $('#gup').onchange=async e=>{for(const f of e.target.files)d.gallery.push(await compress(f,900,.72));e.target.value='';drawGal();refresh()};
- document.querySelectorAll('[data-up]').forEach(i=>i.onchange=async e=>{
-  const f=e.target.files[0];if(!f)return;const k=i.dataset.up;d[k]=await compress(f,1400,.75);
-  document.querySelector(`[data-k="${k}"]`).value='(រូបដែល Upload)';refresh()});
- document.querySelectorAll('[data-supl]').forEach(i=>i.onchange=async e=>{
-  const f=e.target.files[0];if(!f)return;const k=i.dataset.supl;d.sections[k].bgImage=await compress(f,1200,.7);
-  syncS();refresh()});
- $('#b-acc').onclick=()=>{['invite','program','gallery','map','rsvp'].forEach(k=>d.sections[k].accent=col(d.color,'#b8860b'));syncS();refresh()};
- $('#b-link').onclick=()=>{
-  const link=location.href.split('#')[0]+'#d='+enc(d);
-  if(link.length>8000){alert('តំណវែងពេក ព្រោះមានរូបដែល Upload។ សូមប្រើប៊ូតុង «ទាញយកឯកសារ HTML» ឬដាក់រូបជា URL។');return}
-  if(navigator.clipboard)navigator.clipboard.writeText(link).then(()=>alert('បានចម្លងតំណ! ផ្ញើឱ្យអតិថិជនបាន។'),()=>prompt('ចម្លងតំណនេះ៖',link));
-  else prompt('ចម្លងតំណនេះ៖',link)};
- $('#b-dl').onclick=()=>{
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([build(d)],{type:'text/html'}));
-  a.download='wedding-invitation.html';a.click()};
- $('#b-open').onclick=()=>window.open(URL.createObjectURL(new Blob([build(d)],{type:'text/html'})));
- $('#b-new').onclick=()=>{if(confirm('លុបទិន្នន័យទាំងអស់ ហើយចាប់ផ្តើមថ្មី?')){try{localStorage.removeItem('wd')}catch(e){}location.hash='#edit';location.reload()}};
-}
+    html += '<footer>'+esc(C.groom)+' & '+esc(C.bride)+'</footer>';
+    $('#app').innerHTML = html;
 
-addEventListener('hashchange',()=>location.reload());
-if(/^#edit/.test(location.hash))startEditor();
-else startViewer(Object.assign({},DEF,window.__DATA__||fromUrl()||{}));
-})();
-</script>
+    // countdown
+    var target = new Date(C.dateTime).getTime(), box = $('#count');
+    function tick(){
+      var d = target - Date.now();
+      if(isNaN(target)){box.innerHTML='';return}
+      if(d <= 0){box.innerHTML='<p class="done">'+esc(C.countdownDone)+'</p>';return}
+      var days=Math.floor(d/864e5), h=Math.floor(d%864e5/36e5), m=Math.floor(d%36e5/6e4), s=Math.floor(d%6e4/1e3);
+      box.innerHTML='<div class="count">'
+        +[[days,'ថ្ងៃ'],[h,'ម៉ោង'],[m,'នាទី'],[s,'វិនាទី']].map(function(x){return '<div><b>'+kh(x[0])+'</b><span>'+x[1]+'</span></div>'}).join('')
+        +'</div>';
+    }
+    tick(); setInterval(tick,1000);
+
+    // music
+    var audio=$('#audio'), btn=$('#music');
+    if(C.music){
+      audio.src=C.music; btn.hidden=false;
+      var play=function(){audio.play().then(function(){btn.classList.add('on')}).catch(function(){})};
+      btn.addEventListener('click',function(){
+        if(audio.paused){play()}else{audio.pause();btn.classList.remove('on')}
+      });
+      if(C.musicAutoplay){
+        var first=function(e){
+          document.removeEventListener('pointerdown',first);
+          if(e.target.closest('#music'))return;
+          play();
+        };
+        document.addEventListener('pointerdown',first);
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

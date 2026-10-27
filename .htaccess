@@ -1,0 +1,11 @@
+// Source - https://stackoverflow.com/a/63634671
+// Posted by user10012, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-06-27, License - CC BY-SA 4.0
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{ENV:HTTPS} !on [NC]
+RewriteRule ^(.*)$ https://myURL.com/$1 [R,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.html [L]
